@@ -759,7 +759,8 @@
                 updateStats();
                 renderVideos();
             } catch (error) {
-                showError('Erreur lors du chargement des données: ' + error.message);
+                console.error('Erreur détaillée:', error);
+                showError('Erreur lors du chargement des données: ' + (error.message || 'Erreur inconnue'));
             } finally {
                 hideLoading();
             }
@@ -807,15 +808,28 @@
                 
                 const items = response.result.items || [];
                 for (const item of items) {
+                    // Gestion sécurisée des miniatures
+                    let thumbnailUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="320" height="180"%3E%3Crect width="320" height="180" fill="%23151515"/%3E%3Ctext x="50%25" y="50%25" font-family="monospace" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle"%3EPas de miniature%3C/text%3E%3C/svg%3E';
+                    
+                    if (item.snippet.thumbnails) {
+                        if (item.snippet.thumbnails.medium && item.snippet.thumbnails.medium.url) {
+                            thumbnailUrl = item.snippet.thumbnails.medium.url;
+                        } else if (item.snippet.thumbnails.default && item.snippet.thumbnails.default.url) {
+                            thumbnailUrl = item.snippet.thumbnails.default.url;
+                        } else if (item.snippet.thumbnails.high && item.snippet.thumbnails.high.url) {
+                            thumbnailUrl = item.snippet.thumbnails.high.url;
+                        }
+                    }
+                    
                     videos.push({
                         id: item.snippet.resourceId.videoId,
                         playlistItemId: item.id,
-                        title: item.snippet.title,
-                        thumbnail: item.snippet.thumbnails.medium.url,
+                        title: item.snippet.title || 'Sans titre',
+                        thumbnail: thumbnailUrl,
                         publishedAt: item.snippet.publishedAt,
                         playlistId: playlistId,
                         playlistTitle: playlistTitle,
-                        description: item.snippet.description
+                        description: item.snippet.description || ''
                     });
                 }
                 
@@ -900,15 +914,22 @@
             
             const date = new Date(video.publishedAt).toLocaleDateString('fr-FR');
             
+            // Fonction pour échapper les caractères HTML
+            const escapeHtml = (text) => {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            };
+            
             card.innerHTML = `
-                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail">
+                <img src="${escapeHtml(video.thumbnail)}" alt="${escapeHtml(video.title)}" class="video-thumbnail" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22180%22%3E%3Crect width=%22320%22 height=%22180%22 fill=%22%23151515%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22monospace%22 font-size=%2214%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EPas de miniature%3C/text%3E%3C/svg%3E'">
                 <div class="video-info">
-                    <div class="video-playlist">${video.playlistTitle}</div>
-                    <h3 class="video-title">${video.title}</h3>
+                    <div class="video-playlist">${escapeHtml(video.playlistTitle)}</div>
+                    <h3 class="video-title">${escapeHtml(video.title)}</h3>
                     <div class="video-meta">Publié le ${date}</div>
                     <div class="video-actions">
-                        <button class="btn-small" onclick="openVideo('${video.id}')">Voir</button>
-                        <button class="btn-small" onclick="openDeleteModal('${video.id}')">Supprimer</button>
+                        <button class="btn-small" onclick="openVideo('${escapeHtml(video.id)}')">Voir</button>
+                        <button class="btn-small" onclick="openDeleteModal('${escapeHtml(video.id)}')">Supprimer</button>
                     </div>
                 </div>
             `;
