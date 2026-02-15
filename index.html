@@ -6,21 +6,25 @@
     <title>YouTube Manager</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #151515;
-            --bg-tertiary: #1f1f1f;
-            --accent: #ff3366;
-            --accent-hover: #ff5577;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666666;
-            --border: #2a2a2a;
-            --success: #00ff88;
-            --warning: #ffaa00;
-            --danger: #ff3366;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fef6f8;
+            --bg-tertiary: #fff9fb;
+            --accent: #ff6b9d;
+            --accent-hover: #ff8fb8;
+            --text-primary: #2d2d2d;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9a9a9a;
+            --border: #ffd4e5;
+            --success: #a0daa9;
+            --warning: #ffd89b;
+            --danger: #ff8fa3;
+            --purple-pastel: #d4b5ff;
+            --blue-pastel: #b8e0ff;
+            --yellow-pastel: #fff5b8;
+            --green-pastel: #c8f0d5;
         }
 
         * {
@@ -30,7 +34,7 @@
         }
 
         body {
-            font-family: 'Crimson Pro', serif;
+            font-family: 'Comfortaa', cursive;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
@@ -50,25 +54,23 @@
         }
 
         header {
-            background: var(--bg-secondary);
-            border-bottom: 2px solid var(--accent);
+            background: var(--bg-primary);
+            border-bottom: 3px solid var(--accent);
             padding: 2rem 3rem;
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
         }
 
         h1 {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, var(--accent), var(--success));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            color: #ff0000;
             margin-bottom: 0.5rem;
             animation: fadeInDown 0.6s ease-out;
         }
@@ -85,7 +87,7 @@
         }
 
         .subtitle {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.875rem;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -99,12 +101,14 @@
         }
 
         .auth-section {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border);
+            background: var(--yellow-pastel);
+            border: 3px solid var(--border);
             padding: 3rem;
             margin-bottom: 3rem;
             text-align: center;
             animation: fadeIn 0.8s ease-out 0.2s both;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
         }
 
         @keyframes fadeIn {
@@ -117,19 +121,21 @@
         }
 
         .btn {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.875rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             padding: 1rem 2.5rem;
-            border: 2px solid var(--accent);
-            background: transparent;
-            color: var(--accent);
+            border: 3px solid var(--accent);
+            background: var(--accent);
+            color: white;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
 
         .btn:before {
@@ -139,7 +145,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: var(--accent);
+            background: var(--accent-hover);
             transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: -1;
         }
@@ -149,9 +155,8 @@
         }
 
         .btn:hover {
-            color: var(--bg-primary);
-            border-color: var(--accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
         }
 
         .btn-danger {
@@ -186,38 +191,48 @@
         }
 
         .filter-group {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            background: var(--blue-pastel);
+            border: 2px solid var(--border);
             padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.2);
         }
 
         .filter-group label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-secondary);
             display: block;
             margin-bottom: 0.75rem;
+            font-weight: 600;
         }
 
         .filter-group input,
         .filter-group select {
-            font-family: 'Crimson Pro', serif;
+            font-family: 'Comfortaa', cursive;
             width: 100%;
             padding: 0.875rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
             color: var(--text-primary);
             font-size: 1rem;
             transition: all 0.3s ease;
+            border-radius: 10px;
         }
 
         .filter-group input:focus,
         .filter-group select:focus {
             outline: none;
             border-color: var(--accent);
-            background: var(--bg-primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
         }
 
         .stats {
@@ -229,38 +244,44 @@
         }
 
         .stat-card {
-            background: var(--bg-secondary);
-            border-left: 4px solid var(--accent);
+            background: var(--purple-pastel);
+            border-left: 6px solid var(--accent);
             padding: 1.5rem;
             transition: transform 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.15);
         }
 
         .stat-card:hover {
-            transform: translateX(5px);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.25);
         }
 
         .stat-card:nth-child(2) {
+            background: var(--green-pastel);
             border-left-color: var(--success);
         }
 
         .stat-card:nth-child(3) {
+            background: var(--yellow-pastel);
             border-left-color: var(--warning);
         }
 
         .stat-value {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         .stat-label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--text-secondary);
             margin-top: 0.5rem;
+            font-weight: 600;
         }
 
         .video-grid {
@@ -272,16 +293,18 @@
 
         .video-card {
             background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.1);
         }
 
         .video-card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
         }
 
         .video-thumbnail {
@@ -301,7 +324,7 @@
         }
 
         .video-title {
-            font-family: 'Crimson Pro', serif;
+            font-family: 'Comfortaa', cursive;
             font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
@@ -313,25 +336,28 @@
         }
 
         .video-meta {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.75rem;
             color: var(--text-muted);
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            font-weight: 600;
         }
 
         .video-playlist {
             display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.7rem;
-            background: var(--bg-tertiary);
-            color: var(--success);
-            padding: 0.25rem 0.75rem;
+            background: var(--green-pastel);
+            color: var(--text-primary);
+            padding: 0.35rem 0.85rem;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            border: 1px solid var(--success);
+            border: 2px solid var(--success);
+            border-radius: 20px;
+            font-weight: 600;
         }
 
         .video-actions {
@@ -341,32 +367,37 @@
         }
 
         .btn-small {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.7rem;
             padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
+            border: 2px solid var(--accent);
+            background: var(--bg-primary);
+            color: var(--accent);
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
         .btn-small:hover {
             border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
         }
 
         .loading {
             text-align: center;
             padding: 4rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 1rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.2em;
+            font-weight: 600;
         }
 
         .loading:after {
@@ -391,8 +422,9 @@
             border: 2px solid var(--danger);
             padding: 2rem;
             margin: 2rem 0;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             color: var(--danger);
+            border-radius: 15px;
         }
 
         .hidden {
@@ -415,11 +447,13 @@
 
         .modal-content {
             background: var(--bg-secondary);
-            border: 2px solid var(--accent);
+            border: 3px solid var(--accent);
             padding: 3rem;
             max-width: 600px;
             width: 90%;
             animation: modalIn 0.3s ease-out;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
         }
 
         @keyframes modalIn {
@@ -434,11 +468,12 @@
         }
 
         .modal-title {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             color: var(--accent);
+            font-weight: 700;
         }
 
         .modal-actions {
@@ -449,14 +484,15 @@
         }
 
         #setupInstructions {
-            background: var(--bg-tertiary);
-            border: 2px dashed var(--border);
+            background: rgba(255, 255, 255, 0.6);
+            border: 3px dashed var(--border);
             padding: 2rem;
             margin: 2rem 0;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.875rem;
             line-height: 1.8;
             animation: fadeIn 0.8s ease-out;
+            border-radius: 15px;
         }
 
         #setupInstructions h3 {
@@ -489,36 +525,74 @@
         }
 
         .client-id-input {
-            background: var(--bg-tertiary);
-            border: 2px solid var(--border);
+            background: rgba(255, 255, 255, 0.7);
+            border: 3px solid var(--border);
             padding: 2rem;
             margin: 2rem 0;
+            border-radius: 15px;
         }
 
         .client-id-input label {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             font-size: 0.875rem;
             color: var(--text-secondary);
             display: block;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            font-weight: 600;
         }
 
         .client-id-input input {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Comfortaa', cursive;
             width: 100%;
             padding: 1rem;
-            background: var(--bg-primary);
+            background: white;
             border: 2px solid var(--border);
             color: var(--text-primary);
             font-size: 0.875rem;
             margin-bottom: 1rem;
+            border-radius: 10px;
         }
 
         .client-id-input input:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+
+        .playlist-checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .playlist-checkbox-item:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .playlist-checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .playlist-checkbox-item label {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            flex-grow: 1;
         }
 
         @media (max-width: 768px) {
@@ -548,7 +622,7 @@
     <div class="noise-overlay"></div>
     
     <header>
-        <h1>YouTube Manager</h1>
+        <h1>Youtube Manager by JS</h1>
         <div class="subtitle">Gestionnaire de vidéos et playlists</div>
     </header>
 
@@ -630,6 +704,21 @@
         <div id="videoGrid" class="video-grid"></div>
         
         <div id="loadingIndicator" class="loading hidden">Chargement</div>
+    </div>
+
+    <!-- Modal de gestion des playlists -->
+    <div id="playlistModal" class="modal hidden" style="display: none;">
+        <div class="modal-content">
+            <h2 class="modal-title">📋 Gérer les playlists</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary); font-family: 'Comfortaa', cursive;">
+                Vidéo : <span id="playlistVideoTitle" style="color: var(--text-primary); font-weight: 600;"></span>
+            </p>
+            <div id="playlistCheckboxes" style="max-height: 400px; overflow-y: auto; margin: 1.5rem 0;"></div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closePlaylistModal()">Annuler</button>
+                <button class="btn" style="background: var(--success); border-color: var(--success);" onclick="savePlaylistChanges()">💾 Sauvegarder</button>
+            </div>
+        </div>
     </div>
 
     <!-- Modal de confirmation de suppression -->
@@ -808,8 +897,8 @@
                 
                 const items = response.result.items || [];
                 for (const item of items) {
-                    // Gestion sécurisée des miniatures
-                    let thumbnailUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="320" height="180"%3E%3Crect width="320" height="180" fill="%23151515"/%3E%3Ctext x="50%25" y="50%25" font-family="monospace" font-size="14" fill="%23666" text-anchor="middle" dominant-baseline="middle"%3EPas de miniature%3C/text%3E%3C/svg%3E';
+                    // Gestion sécurisée des miniatures avec smiley clin d'œil sur fond pastel uni
+                    let thumbnailUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="320" height="180"%3E%3Crect width="320" height="180" fill="%23d4b5ff"/%3E%3Ctext x="50%25" y="50%25" font-size="60" text-anchor="middle" dominant-baseline="middle"%3E😉%3C/text%3E%3C/svg%3E';
                     
                     if (item.snippet.thumbnails) {
                         if (item.snippet.thumbnails.medium && item.snippet.thumbnails.medium.url) {
@@ -921,15 +1010,19 @@
                 return div.innerHTML;
             };
             
+            // SVG de fallback avec smiley clin d'œil sur fond pastel uni
+            const fallbackImage = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22180%22%3E%3Crect width=%22320%22 height=%22180%22 fill=%22%23d4b5ff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2260%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E😉%3C/text%3E%3C/svg%3E';
+            
             card.innerHTML = `
-                <img src="${escapeHtml(video.thumbnail)}" alt="${escapeHtml(video.title)}" class="video-thumbnail" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22180%22%3E%3Crect width=%22320%22 height=%22180%22 fill=%22%23151515%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22monospace%22 font-size=%2214%22 fill=%22%23666%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EPas de miniature%3C/text%3E%3C/svg%3E'">
+                <img src="${escapeHtml(video.thumbnail)}" alt="${escapeHtml(video.title)}" class="video-thumbnail" onerror="this.src='${fallbackImage}'">
                 <div class="video-info">
                     <div class="video-playlist">${escapeHtml(video.playlistTitle)}</div>
                     <h3 class="video-title">${escapeHtml(video.title)}</h3>
                     <div class="video-meta">Publié le ${date}</div>
                     <div class="video-actions">
-                        <button class="btn-small" onclick="openVideo('${escapeHtml(video.id)}')">Voir</button>
-                        <button class="btn-small" onclick="openDeleteModal('${escapeHtml(video.id)}')">Supprimer</button>
+                        <button class="btn-small" onclick="openVideo('${escapeHtml(video.id)}')">▶ Voir</button>
+                        <button class="btn-small" onclick="openPlaylistManager('${escapeHtml(video.id)}')">📋 Playlists</button>
+                        <button class="btn-small" onclick="openDeleteModal('${escapeHtml(video.id)}')">🗑️ Supprimer</button>
                     </div>
                 </div>
             `;
@@ -941,17 +1034,138 @@
             window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
         }
 
+        let currentVideoForPlaylist = null;
+        let currentVideoPlaylists = [];
+
+        async function openPlaylistManager(videoId) {
+            const video = allVideos.find(v => v.id === videoId);
+            if (!video) return;
+            
+            currentVideoForPlaylist = video;
+            document.getElementById('playlistVideoTitle').textContent = video.title;
+            
+            // Récupérer les playlists actuelles de cette vidéo
+            currentVideoPlaylists = allVideos
+                .filter(v => v.id === videoId)
+                .map(v => v.playlistId);
+            
+            // Créer la liste de checkboxes
+            const container = document.getElementById('playlistCheckboxes');
+            container.innerHTML = '';
+            
+            allPlaylists.forEach(playlist => {
+                const isChecked = currentVideoPlaylists.includes(playlist.id);
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'playlist-checkbox-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `playlist-${playlist.id}`;
+                checkbox.checked = isChecked;
+                checkbox.dataset.playlistId = playlist.id;
+                
+                const label = document.createElement('label');
+                label.htmlFor = `playlist-${playlist.id}`;
+                label.textContent = playlist.snippet.title;
+                
+                itemDiv.appendChild(checkbox);
+                itemDiv.appendChild(label);
+                
+                // Rendre tout le div cliquable
+                itemDiv.addEventListener('click', (e) => {
+                    if (e.target !== checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                    }
+                });
+                
+                container.appendChild(itemDiv);
+            });
+            
+            document.getElementById('playlistModal').classList.remove('hidden');
+            document.getElementById('playlistModal').style.display = 'flex';
+        }
+
+        function closePlaylistModal() {
+            document.getElementById('playlistModal').classList.add('hidden');
+            document.getElementById('playlistModal').style.display = 'none';
+            currentVideoForPlaylist = null;
+            currentVideoPlaylists = [];
+        }
+
+        async function savePlaylistChanges() {
+            if (!currentVideoForPlaylist) return;
+            
+            const checkboxes = document.querySelectorAll('#playlistCheckboxes input[type="checkbox"]');
+            const newPlaylists = [];
+            const oldPlaylists = [...currentVideoPlaylists];
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    newPlaylists.push(cb.dataset.playlistId);
+                }
+            });
+            
+            showLoading();
+            
+            try {
+                // Supprimer des playlists décochées
+                for (const playlistId of oldPlaylists) {
+                    if (!newPlaylists.includes(playlistId)) {
+                        const video = allVideos.find(v => v.id === currentVideoForPlaylist.id && v.playlistId === playlistId);
+                        if (video && video.playlistItemId) {
+                            await gapi.client.youtube.playlistItems.delete({
+                                id: video.playlistItemId
+                            });
+                        }
+                    }
+                }
+                
+                // Ajouter aux nouvelles playlists cochées
+                for (const playlistId of newPlaylists) {
+                    if (!oldPlaylists.includes(playlistId)) {
+                        await gapi.client.youtube.playlistItems.insert({
+                            part: 'snippet',
+                            resource: {
+                                snippet: {
+                                    playlistId: playlistId,
+                                    resourceId: {
+                                        kind: 'youtube#video',
+                                        videoId: currentVideoForPlaylist.id
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                closePlaylistModal();
+                
+                // Recharger les données
+                await loadAllData();
+                
+                alert('✅ Playlists mises à jour avec succès !');
+                
+            } catch (error) {
+                console.error('Erreur lors de la mise à jour des playlists:', error);
+                alert('❌ Erreur lors de la mise à jour des playlists: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
         function openDeleteModal(videoId) {
             const video = allVideos.find(v => v.id === videoId);
             if (video) {
                 currentVideoToDelete = video;
                 document.getElementById('deleteVideoTitle').textContent = video.title;
                 document.getElementById('deleteModal').classList.remove('hidden');
+                document.getElementById('deleteModal').style.display = 'flex';
             }
         }
 
         function closeDeleteModal() {
             document.getElementById('deleteModal').classList.add('hidden');
+            document.getElementById('deleteModal').style.display = 'none';
             currentVideoToDelete = null;
         }
 
@@ -1004,6 +1218,12 @@
         document.getElementById('deleteModal').addEventListener('click', (e) => {
             if (e.target.id === 'deleteModal') {
                 closeDeleteModal();
+            }
+        });
+
+        document.getElementById('playlistModal').addEventListener('click', (e) => {
+            if (e.target.id === 'playlistModal') {
+                closePlaylistModal();
             }
         });
 
